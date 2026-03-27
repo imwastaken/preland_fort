@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wycena Ekwipunku</title>
+    <!-- Подключаем Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключаем шрифты: Oswald (отличный аналог для мультиязычного гейм-дизайна) и Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'gaming': ['"Oswald"', 'sans-serif'],
+                        'sans': ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        'epic-purple': '#8b5cf6',
+                        'epic-dark': '#1e1b4b',
+                        'legendary-gold': '#fbbf24',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Анимация парения для иконки */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Анимация свечения для кнопки */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.9); }
+        }
+        .btn-glow {
+            animation: glow 2s infinite alternate;
+        }
+
+        /* Кастомный скроллбар для модалок */
+        .modal-scroll::-webkit-scrollbar { width: 6px; }
+        .modal-scroll::-webkit-scrollbar-track { background: #1f2937; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+
+        body {
+            /* Характерный радиальный градиент в стиле лобби */
+            background: radial-gradient(circle at 50% 0%, #4c1d95 0%, #1e1b4b 60%, #0f172a 100%);
+        }
+
+        /* Характерная обводка текста как в Фортнайте */
+        .fn-text-outline {
+            -webkit-text-stroke: 1.5px #0f172a;
+            text-shadow: 3px 4px 0px rgba(15, 23, 42, 0.8);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans text-slate-200 selection:bg-purple-500 selection:text-white">
+
+    <!-- Основной контент -->
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
+
+        <!-- Декоративные элементы на фоне (лучи) -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-purple-600/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+        <div class="max-w-md w-full bg-slate-900/80 backdrop-blur-md rounded-3xl p-6 sm:p-10 text-center border-2 border-purple-500/30 shadow-[0_0_40px_rgba(139,92,246,0.15)] relative z-10">
+
+            <!-- Иконка "Алмаз/Редкость" -->
+            <div class="w-24 h-24 mx-auto mb-6 relative animate-float">
+                <div class="absolute inset-0 bg-blue-500 blur-xl opacity-40 rounded-full"></div>
+                <svg class="w-full h-full text-cyan-400 relative z-10 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.25l-4.5 4.5H3v4.5l-2.25 4.5L12 21.75l11.25-11.25-2.25-4.5h-4.5l-4.5-4.5zM12 5.43l2.82 2.82h-5.64L12 5.43zm-6.18 4.32h12.36l1.29 2.58L12 18.51 4.53 12.33l1.29-2.58z"/>
+                </svg>
+            </div>
+
+            <!-- Заголовки с геймерским шрифтом, обводкой и легким наклоном (-skew-x-6) -->
+            <h1 data-i18n="heading" class="font-gaming text-4xl sm:text-5xl text-white mb-2 fn-text-outline tracking-wider -skew-x-6 inline-block">
+                WYCEŃ SWOJĄ SZAFKĘ
+            </h1>
+
+            <p data-i18n="desc" class="text-sm sm:text-base text-purple-200 mb-8 font-medium leading-relaxed mt-2">
+                Sprawdź prawdziwą rzadkość i wartość swojej kolekcji skinów, kilofów i emotek w kilka kliknięć.
+            </p>
+
+            <!-- КНОПКА ПЕРЕХОДА -->
+            <a href="https://ТВОЯ_ССЫЛКА_НА_САЙТ.com" target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center w-full bg-legendary-gold hover:bg-yellow-300 text-slate-900 font-gaming text-2xl py-4 px-6 rounded-xl transition-all duration-200 border-b-4 border-yellow-600 hover:border-yellow-500 hover:translate-y-[2px] active:translate-y-[4px] active:border-b-0 btn-glow group">
+                <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <!-- Наклоняем только текст внутри кнопки для динамики -->
+                <span data-i18n="btn" class="-skew-x-6 inline-block mt-1">SPRAWDŹ SZAFKĘ</span>
+            </a>
+
+            <p data-i18n="secure" class="mt-5 text-[11px] text-slate-500 font-semibold uppercase tracking-wider">
+                Bezpiecznie • Szybko • Anonimowo
+            </p>
+        </div>
+    </main>
+
+    <!-- Подвал с юридической информацией -->
+    <footer class="py-6 text-center border-t border-slate-800 bg-slate-900/50 backdrop-blur-sm relative z-10">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-5 text-[10px] sm:text-xs text-slate-400 mb-3 font-medium">
+                <button onclick="openModal('privacyModal')" data-i18n="privacy_link" class="hover:text-purple-400 transition-colors uppercase tracking-wide">Polityka prywatności</button>
+                <span class="text-slate-700 hidden sm:inline">|</span>
+                <button onclick="openModal('termsModal')" data-i18n="terms_link" class="hover:text-purple-400 transition-colors uppercase tracking-wide">Regulamin serwisu</button>
+                <span class="text-slate-700 hidden sm:inline">|</span>
+                <button onclick="openModal('disclaimerModal')" data-i18n="disclaimer_link" class="hover:text-purple-400 transition-colors uppercase tracking-wide">Zrzeczenie się odpowiedzialności</button>
+            </div>
+            <p data-i18n="copyright" class="text-[10px] text-slate-600">© 2026 Wszelkie prawa zastrzeżone. Ten zasób nie jest powiązany z twórcami gier i jest niezależnym narzędziem analitycznym.</p>
+        </div>
+    </footer>
+
+    <!-- МОДАЛЬНЫЕ ОКНА -->
+
+    <!-- 1. Политика конфиденциальности -->
+    <div id="privacyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[80vh] flex flex-col transform scale-95 transition-transform duration-300">
+            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
+                <h2 data-i18n="privacy_link" class="text-lg font-bold text-white">Polityka prywatności</h2>
+                <button onclick="closeModal('privacyModal')" class="text-slate-400 hover:text-white p-1 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div data-i18n="privacy_body" class="p-6 overflow-y-auto modal-scroll text-sm text-slate-300 space-y-4 font-sans leading-relaxed">
+            </div>
+            <div class="p-4 border-t border-slate-800 text-right bg-slate-800/50 rounded-b-2xl">
+                <button onclick="closeModal('privacyModal')" data-i18n="close_btn" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-500 transition-colors text-sm font-bold uppercase tracking-wider">Rozumiem</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Пользовательское соглашение -->
+    <div id="termsModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[80vh] flex flex-col transform scale-95 transition-transform duration-300">
+            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
+                <h2 data-i18n="terms_link" class="text-lg font-bold text-white">Regulamin serwisu</h2>
+                <button onclick="closeModal('termsModal')" class="text-slate-400 hover:text-white p-1 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div data-i18n="terms_body" class="p-6 overflow-y-auto modal-scroll text-sm text-slate-300 space-y-4 font-sans leading-relaxed">
+            </div>
+            <div class="p-4 border-t border-slate-800 text-right bg-slate-800/50 rounded-b-2xl">
+                <button onclick="closeModal('termsModal')" data-i18n="close_btn" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-500 transition-colors text-sm font-bold uppercase tracking-wider">Rozumiem</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Отказ от ответственности -->
+    <div id="disclaimerModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[80vh] flex flex-col transform scale-95 transition-transform duration-300">
+            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
+                <h2 data-i18n="disclaimer_link" class="text-lg font-bold text-white">Zrzeczenie się odpowiedzialności</h2>
+                <button onclick="closeModal('disclaimerModal')" class="text-slate-400 hover:text-white p-1 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div data-i18n="disclaimer_body" class="p-6 overflow-y-auto modal-scroll text-sm text-slate-300 space-y-4 font-sans leading-relaxed">
+            </div>
+            <div class="p-4 border-t border-slate-800 text-right bg-slate-800/50 rounded-b-2xl">
+                <button onclick="closeModal('disclaimerModal')" data-i18n="close_btn" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-500 transition-colors text-sm font-bold uppercase tracking-wider">Rozumiem</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script>
+        // ==========================================
+        // НАСТРОЙКА ЯЗЫКА. ДОСТУПНО: 'ru', 'en', 'pl', 'pt'
+        // ==========================================
+        const CURRENT_LANGUAGE = 'pl';
+
+        const translations = {
+            ru: {
+                title: "Оценка инвентаря",
+                heading: "ОЦЕНИ СВОЙ ШКАФЧИК",
+                desc: "Узнай реальную редкость и стоимость твоей коллекции скинов, кирок и эмоций за пару кликов.",
+                btn: "ПРОВЕРИТЬ ШКАФЧИК",
+                secure: "Безопасно • Быстро • Анонимно",
+                privacy_link: "Политика конфиденциальности",
+                terms_link: "Пользовательское соглашение",
+                disclaimer_link: "Отказ от ответственности",
+                copyright: "© 2026 Все права защищены. Данный ресурс не связан с разработчиками игр и является независимым аналитическим инструментом.",
+                close_btn: "Понятно",
+                privacy_body: "<p><strong>1. Общие положения</strong><br>Настоящая политика определяет порядок обработки данных и меры по обеспечению их безопасности.</p><p><strong>2. Сбор информации</strong><br>Мы собираем информацию при посещении сайта (IP-адрес, тип браузера). Данные обобщаются и не используются для деанонимизации.</p><p><strong>3. Безопасность данных</strong><br>Мы не требуем ввода паролей от игровых аккаунтов. Оценка производится на основе открытых данных.</p>",
+                terms_body: "<p><strong>1. Предмет соглашения</strong><br>Соглашение определяет условия использования сервиса оценки виртуальных предметов.</p><p><strong>2. Использование сервиса</strong><br>Сервис предоставляется 'как есть'. Пользователь обязуется использовать сервис только в законных целях.</p><p><strong>3. Интеллектуальная собственность</strong><br>Все права на виртуальные предметы принадлежат их законным правообладателям.</p>",
+                disclaimer_body: "<p>Данный сайт является независимым ресурсом и <strong>никак не связан, не спонсируется и не одобрен</strong> какими-либо компаниями-разработчиками игр.</p><p>Оценка стоимости инвентаря носит ознакомительный характер. Реальная стоимость может отличаться.</p><p>Администрация не несет ответственности за решения, принятые пользователем на основе этой информации.</p>"
+            },
+            en: {
+                title: "Inventory Valuation",
+                heading: "APPRAISE YOUR LOCKER",
+                desc: "Discover the real rarity and value of your skin, pickaxe, and emote collection in a few clicks.",
+                btn: "CHECK LOCKER",
+                secure: "Secure • Fast • Anonymous",
+                privacy_link: "Privacy Policy",
+                terms_link: "Terms of Service",
+                disclaimer_link: "Disclaimer",
+                copyright: "© 2026 All rights reserved. This resource is not affiliated with game developers and is an independent analytical tool.",
+                close_btn: "Understood",
+                privacy_body: "<p><strong>1. General Provisions</strong><br>This policy determines the procedure for processing data and ensuring its security.</p><p><strong>2. Information Collection</strong><br>We collect information when you visit the site (IP address, browser type). The data is aggregated and not used for identification.</p><p><strong>3. Data Security</strong><br>We do not require game account passwords. Valuations are based on public data.</p>",
+                terms_body: "<p><strong>1. Subject of the Agreement</strong><br>This agreement defines the terms of use for the virtual item valuation service.</p><p><strong>2. Use of Service</strong><br>The service is provided 'as is'. The user agrees to use it only for lawful purposes.</p><p><strong>3. Intellectual Property</strong><br>All rights to virtual items belong to their legal owners.</p>",
+                disclaimer_body: "<p>This site is an independent resource and is <strong>not affiliated, sponsored, or endorsed</strong> by any game developers.</p><p>Inventory valuation is for informational purposes only. Real value may vary.</p><p>The administration is not responsible for decisions made based on this information.</p>"
+            },
+            pl: {
+                title: "Wycena Ekwipunku",
+                heading: "WYCEŃ SWOJĄ SZAFKĘ",
+                desc: "Sprawdź prawdziwą rzadkość i wartość swojej kolekcji skinów, kilofów i emotek w kilka kliknięć.",
+                btn: "SPRAWDŹ SZAFKĘ",
+                secure: "Bezpiecznie • Szybko • Anonimowo",
+                privacy_link: "Polityka prywatności",
+                terms_link: "Regulamin serwisu",
+                disclaimer_link: "Zrzeczenie się odpowiedzialności",
+                copyright: "© 2026 Wszelkie prawa zastrzeżone. Ten zasób nie jest powiązany z twórcami gier i jest niezależnym narzędziem analitycznym.",
+                close_btn: "Rozumiem",
+                privacy_body: "<p><strong>1. Postanowienia ogólne</strong><br>Niniejsza polityka określa procedurę przetwarzania danych i zapewnienia ich bezpieczeństwa.</p><p><strong>2. Gromadzenie informacji</strong><br>Zbieramy informacje podczas wizyty (adres IP, przeglądarka). Dane są anonimowe.</p><p><strong>3. Bezpieczeństwo danych</strong><br>Nie wymagamy haseł do kont. Wycena opiera się na danych publicznych.</p>",
+                terms_body: "<p><strong>1. Przedmiot umowy</strong><br>Umowa określa warunki korzystania z usługi wyceny przedmiotów wirtualnych.</p><p><strong>2. Korzystanie z usługi</strong><br>Usługa jest świadczona 'tak jak jest'. Użytkownik zobowiązuje się do korzystania z niej zgodnie z prawem.</p><p><strong>3. Własność intelektualna</strong><br>Wszelkie prawa do przedmiotów wirtualnych należą do ich prawnych właścicieli.</p>",
+                disclaimer_body: "<p>Ta strona jest niezależnym zasobem i <strong>nie jest powiązana, sponsorowana ani wspierana</strong> przez twórców gier.</p><p>Wycena ma charakter poglądowy. Rzeczywista wartość może się różnić.</p><p>Administracja nie ponosi odpowiedzialności za decyzje podjęte na podstawie tych informacji.</p>"
+            },
+            pt: {
+                title: "Avaliação de Inventário",
+                heading: "AVALIE SEU VESTIÁRIO",
+                desc: "Descubra a verdadeira raridade e o valor da sua coleção de skins, picaretas e emotes em poucos cliques.",
+                btn: "VERIFICAR VESTIÁRIO",
+                secure: "Seguro • Rápido • Anônimo",
+                privacy_link: "Política de Privacidade",
+                terms_link: "Termos de Uso",
+                disclaimer_link: "Isenção de Responsabilidade",
+                copyright: "© 2026 Todos os direitos reservados. Este recurso não é afiliado a desenvolvedores e é uma ferramenta analítica independente.",
+                close_btn: "Entendi",
+                privacy_body: "<p><strong>1. Disposições Gerais</strong><br>Esta política determina o procedimento para processamento e segurança de dados.</p><p><strong>2. Coleta de Informações</strong><br>Coletamos informações durante a visita (IP, navegador). Os dados são agregados e anônimos.</p><p><strong>3. Segurança de Dados</strong><br>Não exigimos senhas de contas de jogos. As avaliações baseiam-se em dados públicos.</p>",
+                terms_body: "<p><strong>1. Objeto</strong><br>Este acordo define os termos de uso do serviço de avaliação.</p><p><strong>2. Uso do Serviço</strong><br>O serviço é fornecido 'como está'. O usuário concorda em usá-lo apenas para fins legais.</p><p><strong>3. Propriedade Intelectual</strong><br>Todos os direitos sobre itens virtuais pertencem aos seus proprietários legais.</p>",
+                disclaimer_body: "<p>Este site é um recurso independente e <strong>não é afiliado, patrocinado ou endossado</strong> por desenvolvedores de jogos.</p><p>A avaliação é apenas para fins informativos. O valor real pode variar.</p><p>A administração não se responsabiliza por decisões tomadas com base nestas informações.</p>"
+            }
+        };
+
+        // Функция применения перевода
+        function applyLanguage() {
+            const langData = translations[CURRENT_LANGUAGE] || translations['ru'];
+
+            // Меняем язык документа и title
+            document.documentElement.lang = CURRENT_LANGUAGE;
+            document.title = langData.title;
+
+            // Находим все элементы с data-i18n и меняем им текст/html
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (langData[key]) {
+                    // Если это контент модалки, используем innerHTML
+                    if (key.includes('_body')) {
+                        el.innerHTML = langData[key];
+                    } else {
+                        el.textContent = langData[key];
+                    }
+                }
+            });
+        }
+
+        // Запускаем перевод при загрузке страницы
+        document.addEventListener('DOMContentLoaded', applyLanguage);
+
+        // Логика работы модальных окон
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const content = modal.querySelector('div.bg-slate-900');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const content = modal.querySelector('div.bg-slate-900');
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            const modals = ['privacyModal', 'termsModal', 'disclaimerModal'];
+            modals.forEach(id => {
+                const modal = document.getElementById(id);
+                if (event.target === modal) {
+                    closeModal(id);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
